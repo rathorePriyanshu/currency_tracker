@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -99,13 +100,15 @@ curl_setopt_array($curl, [
     CURLOPT_CONNECTTIMEOUT => 3,
     CURLOPT_HTTPHEADER => [
         'User-Agent: Payflo Currency Tracker/1.0'
-    ]
+    ],
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_SSL_VERIFYHOST => false,
 ]);
 
 $api_response = curl_exec($curl);
 $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 $curl_error = curl_error($curl);
-curl_close($curl);
+
 
 $fetch_success = ($http_code === 200 && $api_response !== false);
 

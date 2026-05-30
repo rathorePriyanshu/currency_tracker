@@ -5,7 +5,7 @@ if (basename($_SERVER['PHP_SELF']) === 'config.php') {
     exit(json_encode(['success' => false, 'error' => 'Direct access forbidden']));
 }
 
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 define('API_BASE_URL', 'https://open.er-api.com/v6/latest/');
