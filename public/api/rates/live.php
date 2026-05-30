@@ -98,6 +98,7 @@ curl_setopt_array($curl, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_TIMEOUT => 5,
     CURLOPT_CONNECTTIMEOUT => 3,
+    CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTPHEADER => [
         'User-Agent: Payflo Currency Tracker/1.0'
     ],
@@ -106,11 +107,18 @@ curl_setopt_array($curl, [
 ]);
 
 $api_response = curl_exec($curl);
+if ($api_response === false) {
+    send_json_response([
+        'success' => false,
+        'error' => curl_error($curl)
+    ], 500);
+}
+
 $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 $curl_error = curl_error($curl);
 
 
-$fetch_success = ($http_code === 200 && $api_response !== false);
+$fetch_success = ($api_response !== false);
 
 if ($fetch_success) {
     $decoded_response = json_decode($api_response, true);

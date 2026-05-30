@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: currency-tracker-backend
-    env: php
-    plan: free
-    buildCommand: ""
-    startCommand: php -S 0.0.0.0:$PORT -t public
