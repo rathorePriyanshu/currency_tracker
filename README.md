@@ -205,7 +205,7 @@ Currency cards automatically stack and adjust for smaller viewports.
 ## 1. Clone Repository
 
 ```bash
-git clone <YOUR_REPOSITORY_LINK>
+git clone <https://github.com/rathorePriyanshu/currency_tracker.git>
 ```
 
 ---
